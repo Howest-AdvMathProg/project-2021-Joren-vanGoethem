@@ -1,0 +1,12 @@
+pandas
+pyqt5 ~= 5.15.2
+pyqt5-tools
+websockets
+
+# Package == 0.6.1                              # Version Matching. Must be version 0.6.1
+# Package >= 4.1.1                              # Minimum version 4.1.1
+# Package != 3.5                                # Version Exclusion. Anything except version 3.5
+# Package ~= 1.1                                # Compatible release. Same as >= 1.1, == 1.*
+# Package >=1.2,<2.0                            # Combine multiple options
+# Package == 5.4 ; python_version < '3.8'       # specific python release
+# Package ; sys_platform == 'win32'             # specific OS
