@@ -33,8 +33,14 @@
      <string>Moderator</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuLog">
+    <property name="title">
+     <string>Log</string>
+    </property>
+   </widget>
    <addaction name="menuLogin"/>
    <addaction name="menuModerator"/>
+   <addaction name="menuLog"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
