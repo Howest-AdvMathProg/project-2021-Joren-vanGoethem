@@ -1,13 +1,23 @@
 import datetime
 
-class log():
+colors = {
+    'VERB': ['\x1b[34m', '\x1b[0m'],
+    'INFO': ['\x1b[32m', '\x1b[0m'],
+    'WARN': ['\x1b[33m', '\x1b[0m'],
+    'ERR': ['\x1b[31m', '\x1b[0m'],
+    'CRIT': ['\x1b[31m', '\x1b[0m']
+}
+
+class Log():
+    log_level = 'INFO'
+
     # fallback to old method
     def __init__(self, *args):
-        log._log(*args)
+        Log._log(*args)
 
     @staticmethod
     def _log(name, level, message, show_time = True):
-        level_types = ['INFO', 'WARN', 'ERROR', 'CRITICAL']
+        level_types = ['VERB', 'INFO', 'WARN', 'ERR', 'CRIT']
 
         if level not in level_types:
             print('Invalid error logging level, please use one of the following:', level_types)
@@ -19,26 +29,27 @@ class log():
         if show_time:
             currentDate = datetime.datetime.now()
             log = f'[{currentDate.strftime("%H:%M:%S")}] '
+            
+            color = colors[level]
 
-        if level == 'WARN':
-            color = ('\x1b[33m', '\x1b[0m')
-        elif level == 'ERROR' or level == 'CRITICAL':
-            color = ('\x1b[31m', '\x1b[0m')
+        print('{}{}[{:<8s}/{:>5s}]{} {}'.format(log, color[0], name, level, color[1], message))
 
-        print(f'{log}{color[0]}[{name}/{level}]{color[1]} {message}')
+    @staticmethod
+    def verbose(name, message, show_time = True):
+        Log._log(name, 'VERB', message, show_time)
 
     @staticmethod
     def info(name, message, show_time = True):
-        log._log(name, 'INFO', message, show_time)
+        Log._log(name, 'INFO', message, show_time)
 
     @staticmethod
     def warning(name, message, show_time = True):
-        log._log(name, 'WARN', message, show_time)
+        Log._log(name, 'WARN', message, show_time)
 
     @staticmethod
     def error(name, message, show_time = True):
-        log._log(name, 'ERROR', message, show_time)
+        Log._log(name, 'ERR', message, show_time)
 
     @staticmethod
     def critical(name, message, show_time = True):
-        log._log(name, 'CRITICAL', message, show_time)
+        Log._log(name, 'CRIT', message, show_time)

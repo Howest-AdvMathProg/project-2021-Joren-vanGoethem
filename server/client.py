@@ -1,8 +1,10 @@
-import threading
 import json
+import threading
+# pylint: disable=no-name-in-module
+from util.logger import Log
 
 class Client(threading.Thread):
-    def __init__(self, addr, conn):
+    def __init__(self, backend, addr, conn):
         threading.Thread.__init__(self)
 
         self._active = True
@@ -10,19 +12,35 @@ class Client(threading.Thread):
         self._addr = addr
         self._conn = conn
 
+        self.backend = backend
+
+    @property
+    def active(self):
+        return self._active
+
     def run(self):
         while self._active:
             # read the size from our buffer
             size = int(self._conn.recv(4))
             if not size:
-                pass
+                continue
             # read data
             data = self._conn.recv(size)
 
-    def send(json_data):
+            Log.verbose('BACKEND', data)
+
+            # parse the message
+            msg = json.loads(data.decode("utf8"))
+            # put the message in the queue
+            self.backend.queue.put(msg)
+
+    def send(self, json_data):
         data = json.dumps(json_data).encode()
         
         # send the size of our message
         self._conn.sendall('%4d' % len(data))
         # send the message
         self._conn.sendall(data)
+
+    def send_event(self, event, data):
+        self.send({ "event" : event, "data" : data })
