@@ -1,2 +1,3 @@
 https://realpython.com/qt-designer-python/
 https://stackoverflow.com/questions/8651742/dynamically-adding-and-removing-widgets-in-pyqt
+https://stackoverflow.com/questions/31354747/password-text-filed-in-pyqt
