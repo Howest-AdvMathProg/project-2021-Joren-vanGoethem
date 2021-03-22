@@ -50,6 +50,7 @@ class Backend(threading.Thread):
             Log.verbose('BACKEND', 'Client connected: {}'.format(addr))
 
             client = Client(self, addr, conn)
+            client.start()
 
             self._clients.append(client) 
 
