@@ -1,7 +1,8 @@
 import json
 import queue
-import threading
 import socket
+import struct
+import threading
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
@@ -30,13 +31,10 @@ class Backend(threading.Thread):
 
         self.s.connect((self.host, self.port))
         
-        msg = "Bonjour"
-
-        self.s.sendall(bytes('%4d' % len(msg), 'utf-8'))
-        self.s.sendall(bytes(msg, 'utf-8'))
+        self.send_event('MESSAGE', 'Bonjour')
 
         while self._running:
-            size = int(self.s.recv(4))
+            size = struct.unpack('>i', self.s.recv(4))[0]
             if not size:
                 continue
             # read data
@@ -48,6 +46,17 @@ class Backend(threading.Thread):
             msg = json.loads(data.decode("utf8"))
             # put the message in the queue
             self.queue.put(msg)
+
+    def send(self, json_data):
+        data = json.dumps(json_data).encode()
+        
+        # send the size of our message
+        self.s.sendall(struct.pack('>i', len(data)))
+        # send the message
+        self.s.sendall(data)
+
+    def send_event(self, event, data):
+        self.send({ "event" : event, "data" : data })
 
     def terminate(self):
         Log.info('BACKEND', 'Terminating...')

@@ -1,4 +1,5 @@
 import json
+import struct
 import threading
 # pylint: disable=no-name-in-module
 from util.logger import Log
@@ -21,7 +22,7 @@ class Client(threading.Thread):
     def run(self):
         while self._active:
             # read the size from our buffer
-            size = int(self._conn.recv(4))
+            size = struct.unpack('>i', self._conn.recv(4))[0]
             if not size:
                 continue
             # read data
@@ -38,7 +39,7 @@ class Client(threading.Thread):
         data = json.dumps(json_data).encode()
         
         # send the size of our message
-        self._conn.sendall('%4d' % len(data))
+        self._conn.sendall(struct.pack('>i', len(data)))
         # send the message
         self._conn.sendall(data)
 
