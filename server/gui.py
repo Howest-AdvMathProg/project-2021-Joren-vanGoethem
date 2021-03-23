@@ -3,10 +3,12 @@ import threading
 from util.logger import Log
 
 class GUI(threading.Thread):
-    def __init__(self):
+    def __init__(self, backend):
         threading.Thread.__init__(self, daemon=True)
         
         self._running = True
+
+        self.backend = backend
 
     @property
     def running(self):

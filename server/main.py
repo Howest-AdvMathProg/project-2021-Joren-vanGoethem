@@ -14,7 +14,7 @@ password = config["moderator"]["password"]
 
 
 backend = Backend(port)
-gui = GUI()
+gui = GUI(backend)
 
 try:
     Log.info('MAIN', 'Starting application...')
