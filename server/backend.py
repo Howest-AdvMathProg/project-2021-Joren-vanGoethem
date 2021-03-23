@@ -10,7 +10,7 @@ class Backend(threading.Thread):
     def __init__(self, port):
         threading.Thread.__init__(self, daemon=True)
 
-        self._clients = []
+        self._clients = {}
         self._queue = queue.Queue()
         self._running = True
 
@@ -33,6 +33,16 @@ class Backend(threading.Thread):
         for client in self._clients:
             client.send_event("BROADCAST", message)
 
+    def remove_client(self, client_resolvable):
+        if isinstance(client_resolvable, Client):
+            client = client_resolvable
+        else:
+            client = self._clients[client_resolvable]
+
+        client.terminate()
+
+        self._clients.pop(client.addr, None)
+
     def run(self):
         Log.info('BACKEND', 'Running')
 
@@ -52,7 +62,7 @@ class Backend(threading.Thread):
             client = Client(self, addr, conn)
             client.start()
 
-            self._clients.append(client) 
+            self._clients[addr] = client
 
     def terminate(self):
         Log.info('BACKEND', 'Terminating...')
