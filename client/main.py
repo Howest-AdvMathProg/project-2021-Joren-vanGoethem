@@ -9,10 +9,11 @@ from util.logger import Log
 with open("./client/config.json", "r") as f:
     config = json.load(f)
 
+host = config["backend"]["host"]
 port = config["backend"]["port"]
 
-backend = Backend(port)
-gui = GUI()
+backend = Backend(host, port)
+gui = GUI(backend)
 
 try:
     Log.info('MAIN', 'Starting application...')

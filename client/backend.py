@@ -3,19 +3,21 @@ import queue
 import socket
 import struct
 import threading
+from handler import EventHandler
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
 class Backend(threading.Thread):
-    def __init__(self, port):
+    def __init__(self, host, port):
         threading.Thread.__init__(self, daemon=True)
 
+        self._handler = EventHandler(self)
         self._queue = queue.Queue()
         self._running = True
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        self.host = '127.0.0.1'
+        self.host = host
         self.port = port
 
     @property
@@ -30,8 +32,8 @@ class Backend(threading.Thread):
         Log.info('BACKEND', 'Running')
 
         self.s.connect((self.host, self.port))
-        
-        self.send_event('MESSAGE', 'Bonjour')
+
+        self._handler.start()
 
         while self._running:
             size = struct.unpack('>i', self.s.recv(4))[0]
