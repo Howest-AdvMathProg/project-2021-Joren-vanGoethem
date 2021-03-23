@@ -1,4 +1,6 @@
 import threading
+# pylint: disable=no-name-in-module
+from util.logger import Log
 
 class EventHandler(threading.Thread):
     def __init__(self, backend):
@@ -16,16 +18,21 @@ class EventHandler(threading.Thread):
         while self._running:
             msg = self.backend.queue.get()
 
-            handler = getattr(self, msg["event"])
+            handler = getattr(self, msg["event"].lower(), False)
             if not handler:
-                print("No handler exists for event", msg["event"])
+                Log.warning("EVENT_HANDLER", "No handler exists for event "+ msg["event"])
             else:
                 handler(msg["data"])
 
+            Log.verbose("EVENT_HANDLER", f"[{msg['event']}]: {msg['data']}")
+
             self.backend.queue.task_done()
 
-    def MESSAGE(self, data):
+    def message(self, data):
         print(data)
+
+    def send_broadcast(self, data):
+        self.backend.broadcast(data)
 
     def terminate(self):
         self._running = False
