@@ -19,13 +19,13 @@ class EventHandler(threading.Thread):
             handler = getattr(self, msg["event"])
             if not handler:
                 print("No handler exists for event", msg["event"])
-                
-                continue
-            
-            handler(msg["data"])
+            else:
+                handler(msg["data"])
+
+            self.backend.queue.task_done()
 
     def MESSAGE(self, data):
-        pass
+        print(data)
 
     def terminate(self):
         self._running = False
