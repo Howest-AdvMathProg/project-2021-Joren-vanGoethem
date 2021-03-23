@@ -19,21 +19,39 @@ class Client(threading.Thread):
     def active(self):
         return self._active
 
+    @property
+    def addr(self):
+        return self._addr
+
+    def handle_message(self):
+        # read the size from our buffer
+        size = struct.unpack('>i', self._conn.recv(4))[0]
+        if not size:
+            return
+        # read data
+        data = self._conn.recv(size)
+
+        Log.verbose('BACKEND', data)
+
+        # parse the message
+        msg = json.loads(data.decode("utf8"))
+        # put the message in the queue
+        self.backend.queue.put(msg)
+
     def run(self):
         while self._active:
-            # read the size from our buffer
-            size = struct.unpack('>i', self._conn.recv(4))[0]
-            if not size:
-                continue
-            # read data
-            data = self._conn.recv(size)
+            try:
+                self.handle_message()
+            except (Exception,ConnectionResetError) as e:
+                if (isinstance(e,ConnectionResetError)):
+                    Log.warning("CLIENT", "Lost connection...")
+                    break
 
-            Log.verbose('BACKEND', data)
+                Log.error("CLIENT", "Undefined behaviour from client, removing client...")
 
-            # parse the message
-            msg = json.loads(data.decode("utf8"))
-            # put the message in the queue
-            self.backend.queue.put(msg)
+                print(e)
+                break
+        self.backend.remove_client(self)
 
     def send(self, json_data):
         data = json.dumps(json_data).encode()
@@ -45,3 +63,10 @@ class Client(threading.Thread):
 
     def send_event(self, event, data):
         self.send({ "event" : event, "data" : data })
+
+    def terminate(self):
+        Log.info("CLIENT", "Terminating client thread...")
+
+        self._conn.close()
+
+        self._active = False
