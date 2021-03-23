@@ -30,8 +30,8 @@ class Backend(threading.Thread):
         return self._running
 
     def broadcast(self, message):
-        for client in self._clients:
-            client.send_event("BROADCAST", message)
+        for addr in self._clients:
+            self._clients[addr].send_event("BROADCAST", message)
 
     def remove_client(self, client_resolvable):
         if isinstance(client_resolvable, Client):
