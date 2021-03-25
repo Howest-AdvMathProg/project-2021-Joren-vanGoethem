@@ -2,7 +2,7 @@ import threading
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
 from gui.ui.mainwindowui import Ui_MainWindow
@@ -25,6 +25,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def connectSignalsSlots(self):
         self.actionUser.triggered.connect(self.LoginDialog)
         self.actionModerator.triggered.connect(self.ModeratorDialog)
+        self.actiontest.triggered.connect(self.test)
 
     def LoginDialog(self):
         dialog = LoginDialog(self)
