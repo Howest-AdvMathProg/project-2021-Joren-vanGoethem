@@ -12,7 +12,11 @@ from PyQt5.uic import loadUi
 import faulthandler
 faulthandler.enable()
 
-with open("./server/config.json", "r") as f:
+# with open("./server/config.json", "r") as f:
+#     config = json.load(f)
+
+
+with open("config.json", "r") as f:
     config = json.load(f)
 
 port = config["backend"]["port"]

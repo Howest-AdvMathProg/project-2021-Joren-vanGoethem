@@ -5,7 +5,7 @@ from util.logger import Log
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from PyQt5.uic import loadUi
 
-from gui.mainwindowui import Ui_MainWindow
+from gui.ui.mainwindowui import Ui_MainWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -32,7 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def ModeratorDialog(self):
         dialog = ModeratorDialog(self)
-        # dialog.exec()
+        dialog.exec()
 
     def run(self):
         Log.info('GUI', 'Running')
@@ -48,9 +48,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 class LoginDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('gui/Login.ui', self)
+        loadUi('gui/ui/Login.ui', self)
     
 class ModeratorDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
-        loadUi('gui/ModeratorLogin.ui', self)
+        loadUi('gui/ui/ModeratorLogin.ui', self)

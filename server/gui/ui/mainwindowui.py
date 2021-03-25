@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(578, 418)
+        MainWindow.resize(490, 349)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -38,22 +38,15 @@ class Ui_MainWindow(object):
         self.centralwidget.setEnabled(True)
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.tableView = QTableView(self.centralwidget)
-        self.tableView.setObjectName(u"tableView")
-        self.tableView.setMinimumSize(QSize(300, 150))
-        self.tableView.setMaximumSize(QSize(1000, 500))
-        self.tableView.setAlternatingRowColors(False)
-        self.tableView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.tableView.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.tableView.setSortingEnabled(True)
-        self.tableView.verticalHeader().setProperty("showSortIndicator", True)
+        self.textEdit = QTextEdit(self.centralwidget)
+        self.textEdit.setObjectName(u"textEdit")
 
-        self.verticalLayout.addWidget(self.tableView)
+        self.verticalLayout.addWidget(self.textEdit)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 578, 30))
+        self.menubar.setGeometry(QRect(0, 0, 490, 30))
         self.menuLogin = QMenu(self.menubar)
         self.menuLogin.setObjectName(u"menuLogin")
         self.menuLog = QMenu(self.menubar)
@@ -72,8 +65,6 @@ class Ui_MainWindow(object):
         self.menuLogin.addAction(self.actionModerator)
 
         self.retranslateUi(MainWindow)
-        self.actionUser.triggered.connect(self.actionUser.trigger)
-        self.actionModerator.triggered.connect(self.actionModerator.trigger)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
