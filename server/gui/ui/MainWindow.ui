@@ -49,15 +49,10 @@
     <property name="title">
      <string>Log</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuGraph">
-    <property name="title">
-     <string>Graph</string>
-    </property>
+    <addaction name="actiontest"/>
    </widget>
    <addaction name="menuLogin"/>
    <addaction name="menuLog"/>
-   <addaction name="menuGraph"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionUser">
@@ -68,6 +63,11 @@
   <action name="actionModerator">
    <property name="text">
     <string>Moderator</string>
+   </property>
+  </action>
+  <action name="actiontest">
+   <property name="text">
+    <string>test</string>
    </property>
   </action>
  </widget>
