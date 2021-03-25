@@ -16,6 +16,8 @@ class EventHandler(threading.Thread):
 
     def run(self):
         while self._running:
+            if self.backend.queue.empty():
+                continue
             msg = self.backend.queue.get()
 
             handler = getattr(self, msg["event"].lower(), False)
