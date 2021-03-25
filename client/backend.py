@@ -28,6 +28,20 @@ class Backend(threading.Thread):
     def running(self):
         return self._running
 
+    def handle_message(self):
+        size = struct.unpack('>i', self.s.recv(4))[0]
+        if not size:
+            return
+        # read data
+        data = self.s.recv(size)
+
+        Log.verbose('BACKEND', data)
+
+        # parse the message
+        msg = json.loads(data.decode("utf8"))
+        # put the message in the queue
+        self.queue.put(msg)
+
     def run(self):
         Log.info('BACKEND', 'Running')
 
@@ -36,18 +50,20 @@ class Backend(threading.Thread):
         self._handler.start()
 
         while self._running:
-            size = struct.unpack('>i', self.s.recv(4))[0]
-            if not size:
-                continue
-            # read data
-            data = self.s.recv(size)
+            try:
+                self.handle_message()
+            except (Exception, ConnectionResetError) as e:
+                if isinstance(e, ConnectionResetError):
+                    Log.warning('BACKEND', 'Remote server disconnected...')
+                else:
+                    Log.error("CLIENT", "Undefined behaviour from client, removing client...")
 
-            Log.verbose('BACKEND', data)
+                    print(e)
 
-            # parse the message
-            msg = json.loads(data.decode("utf8"))
-            # put the message in the queue
-            self.queue.put(msg)
+                break
+
+        self._handler.terminate()
+            
 
     def send(self, json_data):
         data = json.dumps(json_data).encode()
