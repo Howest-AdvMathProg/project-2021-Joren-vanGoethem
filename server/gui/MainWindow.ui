@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>312</width>
-    <height>215</height>
+    <width>578</width>
+    <height>418</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -62,7 +62,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>312</width>
+     <width>578</width>
      <height>30</height>
     </rect>
    </property>
@@ -70,11 +70,8 @@
     <property name="title">
      <string>Login</string>
     </property>
-   </widget>
-   <widget class="QMenu" name="menuModerator">
-    <property name="title">
-     <string>Moderator</string>
-    </property>
+    <addaction name="actionUser"/>
+    <addaction name="actionModerator"/>
    </widget>
    <widget class="QMenu" name="menuLog">
     <property name="title">
@@ -87,12 +84,54 @@
     </property>
    </widget>
    <addaction name="menuLogin"/>
-   <addaction name="menuModerator"/>
    <addaction name="menuLog"/>
    <addaction name="menuGraph"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionUser">
+   <property name="text">
+    <string>User</string>
+   </property>
+  </action>
+  <action name="actionModerator">
+   <property name="text">
+    <string>Moderator</string>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionUser</sender>
+   <signal>triggered()</signal>
+   <receiver>actionUser</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionModerator</sender>
+   <signal>triggered()</signal>
+   <receiver>actionModerator</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
