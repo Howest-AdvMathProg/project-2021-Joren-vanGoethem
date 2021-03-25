@@ -1,20 +1,17 @@
 from backend import Backend
 from gui.MainWindow import MainWindow
-from time import sleep
 import json
 import sys
 # pylint: disable=no-name-in-module
+from gui.gui import GUI
 from util.logger import Log
 
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
-from PyQt5.uic import loadUi
-
+# in-depth memory access violation error logging
 import faulthandler
 faulthandler.enable()
 
 # with open("./server/config.json", "r") as f:
 #     config = json.load(f)
-
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -23,22 +20,13 @@ port = config["backend"]["port"]
 password = config["moderator"]["password"]
 
 backend = Backend(port)
-app = QApplication(sys.argv)
-gui = MainWindow(backend)
-gui.show()
-
+gui = GUI(backend)
 
 try:
     Log.info('MAIN', 'Starting application...')
 
     backend.start()
-    # gui.start()
-
-    # app.exec()
-    sys.exit(app.exec())
-
-    while backend.running or gui.running:
-        sleep(0.1)
+    gui.run()
 except (Exception, KeyboardInterrupt) as e:
     if (isinstance(e, KeyboardInterrupt)):
         Log.info('MAIN', 'Received keyboard interrupt')

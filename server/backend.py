@@ -65,8 +65,9 @@ class Backend(threading.Thread):
             self._clients[addr] = client
 
     def terminate(self):
-        Log.info('BACKEND', 'Terminating...')
-        # self.broadcast("Server is closing")
-        self._handler.terminate()
+        if self._running:
+            Log.info('BACKEND', 'Terminating...')
+            
+            self._handler.terminate()
 
-        self._running = False
+            self._running = False
