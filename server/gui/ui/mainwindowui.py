@@ -17,8 +17,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -33,6 +31,8 @@ class Ui_MainWindow(object):
         self.actionUser.setObjectName(u"actionUser")
         self.actionModerator = QAction(MainWindow)
         self.actionModerator.setObjectName(u"actionModerator")
+        self.actiontest = QAction(MainWindow)
+        self.actiontest.setObjectName(u"actiontest")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
@@ -51,8 +51,6 @@ class Ui_MainWindow(object):
         self.menuLogin.setObjectName(u"menuLogin")
         self.menuLog = QMenu(self.menubar)
         self.menuLog.setObjectName(u"menuLog")
-        self.menuGraph = QMenu(self.menubar)
-        self.menuGraph.setObjectName(u"menuGraph")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -60,9 +58,9 @@ class Ui_MainWindow(object):
 
         self.menubar.addAction(self.menuLogin.menuAction())
         self.menubar.addAction(self.menuLog.menuAction())
-        self.menubar.addAction(self.menuGraph.menuAction())
         self.menuLogin.addAction(self.actionUser)
         self.menuLogin.addAction(self.actionModerator)
+        self.menuLog.addAction(self.actiontest)
 
         self.retranslateUi(MainWindow)
 
@@ -73,7 +71,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Python Client", None))
         self.actionUser.setText(QCoreApplication.translate("MainWindow", u"User", None))
         self.actionModerator.setText(QCoreApplication.translate("MainWindow", u"Moderator", None))
+        self.actiontest.setText(QCoreApplication.translate("MainWindow", u"test", None))
         self.menuLogin.setTitle(QCoreApplication.translate("MainWindow", u"Login", None))
         self.menuLog.setTitle(QCoreApplication.translate("MainWindow", u"Log", None))
-        self.menuGraph.setTitle(QCoreApplication.translate("MainWindow", u"Graph", None))
     # retranslateUi
