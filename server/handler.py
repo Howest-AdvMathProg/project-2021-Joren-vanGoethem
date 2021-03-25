@@ -1,4 +1,5 @@
 import threading
+from time import sleep
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
@@ -17,6 +18,8 @@ class EventHandler(threading.Thread):
     def run(self):
         while self._running:
             if self.backend.queue.empty():
+                sleep(0.0001)
+
                 continue
             msg = self.backend.queue.get()
 
