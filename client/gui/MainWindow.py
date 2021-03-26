@@ -14,16 +14,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
            
     def connectSignalsSlots(self):
         pass
-    #     self.actionUser.triggered.connect(self.LoginDialog)
-    #     self.actionModerator.triggered.connect(self.ModeratorDialog)
+#         self.actionUser.triggered.connect(self.LoginDialog)
+#         self.actionModerator.triggered.connect(self.ModeratorDialog)
 
-    # def LoginDialog(self):
-    #     dialog = LoginDialog(self)
-    #     dialog.exec()
+#     def LoginDialog(self):
+#         dialog = LoginDialog(self)
+#         dialog.exec()
 
-    # def ModeratorDialog(self):
-    #     dialog = ModeratorDialog(self)
-    #     dialog.exec()
+#     def ModeratorDialog(self):
+#         dialog = ModeratorDialog(self)
+#         dialog.exec()
 
 # class LoginDialog(QDialog):
 #     def __init__(self, parent=None):
