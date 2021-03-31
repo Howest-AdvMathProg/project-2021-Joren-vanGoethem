@@ -13,9 +13,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.backend = backend
            
     def connectSignalsSlots(self):
-        pass
+        self.actionAbout.triggered.connect(self.about)
     #     self.actionUser.triggered.connect(self.LoginDialog)
     #     self.actionModerator.triggered.connect(self.ModeratorDialog)
+
+    def about(self):
+        QMessageBox.about(
+            self,
+            "About Client-Server App",
+            "<p>A socket connection app built with:</p>"
+            "<ul>"
+            "<li> PyQt</li>"
+            "<li> Qt Designer</li>"
+            "<li> Python 3</li>"
+            "</ul>"
+            "<p>Made by:</p>"
+            "<p>Andreas Maerten & Joren vanGoethem</p>",
+        )
+
 
     # def LoginDialog(self):
     #     dialog = LoginDialog(self)

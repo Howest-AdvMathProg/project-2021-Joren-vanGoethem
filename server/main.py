@@ -39,4 +39,3 @@ finally:
     gui.terminate()
 
     sys.exit()
-

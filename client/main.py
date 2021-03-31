@@ -6,7 +6,7 @@ import sys
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
-with open("./client/config.json", "r") as f:
+with open("config.json", "r") as f:
     config = json.load(f)
 
 host = config["backend"]["host"]
