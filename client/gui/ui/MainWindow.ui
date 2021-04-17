@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>410</height>
+    <width>703</width>
+    <height>414</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,91 +23,63 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
-    <item>
-     <widget class="QTextEdit" name="MainField"/>
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="1,0">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <item row="0" column="0">
+     <widget class="QLabel" name="Resultlabel">
+      <property name="text">
+       <string>Result</string>
+      </property>
+     </widget>
     </item>
-    <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
+    <item row="1" column="1">
+     <widget class="QPlainTextEdit" name="commandfield">
+      <property name="plainText">
+       <string>{
+  &quot;event&quot;: &quot;SEARCH&quot;,
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;column&quot;: &quot;&quot;,
+      &quot;value&quot;: &quot;&quot;
+    },
+    &quot;type&quot;: &quot;column&quot;,
+    &quot;exact&quot;: false
+  }
+}</string>
       </property>
-      <property name="spacing">
-       <number>6</number>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="commandlabel">
+      <property name="text">
+       <string>Search Command</string>
       </property>
-      <item row="0" column="0">
-       <widget class="QLabel" name="CommandLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Command Input:</string>
-        </property>
-        <property name="buddy">
-         <cstring>CommandField</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QTextEdit" name="CommandField">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>5</horstretch>
-          <verstretch>5</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>1920</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContents</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="CommandEnterBtn">
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>90</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Enter</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="Searchbutton">
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" rowspan="2">
+     <widget class="QTableView" name="ResultTable">
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -116,7 +88,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>750</width>
+     <width>703</width>
      <height>30</height>
     </rect>
    </property>
@@ -132,21 +104,6 @@
   <action name="actiontest">
    <property name="text">
     <string>test</string>
-   </property>
-  </action>
-  <action name="actionQuery_Log">
-   <property name="text">
-    <string>Query Log</string>
-   </property>
-  </action>
-  <action name="actionServer_Log">
-   <property name="text">
-    <string>Server Log</string>
-   </property>
-  </action>
-  <action name="actionActive_Users">
-   <property name="text">
-    <string>Active Users</string>
    </property>
   </action>
   <action name="actionAbout">
