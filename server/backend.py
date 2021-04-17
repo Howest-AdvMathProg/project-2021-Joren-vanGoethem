@@ -2,24 +2,26 @@ import queue
 import socket
 import threading
 from client import Client
-from handler import EventHandler
+from datahandler import DataHandler
+from eventhandler import EventHandler
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
 class Backend(threading.Thread):
-    def __init__(self, port):
+    def __init__(self, config):
         threading.Thread.__init__(self, daemon=True)
 
         self._clients = {}
         self._queue = queue.Queue()
         self._running = True
 
-        self._handler = EventHandler(self)
+        self.datahandler = DataHandler(self, config["datahandler"])
+        self._eventhandler = EventHandler(self, config["eventhandler"])
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        self.host = "0.0.0.0"
-        self.port = port
+        self.host = config["server"]["ip"]
+        self.port = config["server"]["port"]
 
     @property
     def queue(self):
@@ -32,6 +34,9 @@ class Backend(threading.Thread):
     def broadcast(self, message):
         for addr in self._clients:
             self._clients[addr].send_event("BROADCAST", message)
+
+    def get_client(self, client_resolvable):
+        return self._clients[client_resolvable]
 
     def remove_client(self, client_resolvable):
         if isinstance(client_resolvable, Client):
@@ -51,7 +56,7 @@ class Backend(threading.Thread):
         # queue up to 5 unaccepted connections
         self.s.listen(5)
 
-        self._handler.start()
+        self._eventhandler.start()
 
         while self.running:
             # blocking call
@@ -68,6 +73,6 @@ class Backend(threading.Thread):
         if self._running:
             Log.info('BACKEND', 'Terminating...')
             
-            self._handler.terminate()
+            self._eventhandler.terminate()
 
             self._running = False
