@@ -12,8 +12,10 @@ class Client(threading.Thread):
 
         self._addr = addr
         self._conn = conn
+        self._identity = None
 
         self.backend = backend
+        self.searches = []
 
     @property
     def active(self):
@@ -22,6 +24,10 @@ class Client(threading.Thread):
     @property
     def addr(self):
         return self._addr
+
+    @property
+    def identity(self):
+        return self._identity
 
     def handle_message(self):
         # read the size from our buffer
@@ -36,7 +42,10 @@ class Client(threading.Thread):
         # parse the message
         msg = json.loads(data.decode("utf8"))
         # put the message in the queue
-        self.backend.queue.put(msg)
+        self.backend.queue.put([self, msg])
+
+    def identify(self, data):
+        self._identity = data
 
     def run(self):
         while self._active:

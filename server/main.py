@@ -16,10 +16,7 @@ faulthandler.enable()
 with open("config.json", "r") as f:
     config = json.load(f)
 
-port = config["backend"]["port"]
-password = config["moderator"]["password"]
-
-backend = Backend(port)
+backend = Backend(config["backend"])
 gui = GUI(backend)
 
 try:

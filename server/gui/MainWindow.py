@@ -14,8 +14,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
            
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
+        self.CommandEnterBtn.clicked.connect(self.test)
     #     self.actionUser.triggered.connect(self.LoginDialog)
     #     self.actionModerator.triggered.connect(self.ModeratorDialog)
+
+    def test(self):
+        print('test')
 
     def about(self):
         QMessageBox.about(
