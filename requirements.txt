@@ -2,6 +2,7 @@ pandas
 pyqt5 ~= 5.15.2
 pyqt5-tools
 websockets
+pyqtgraph
 
 # Package == 0.6.1                              # Version Matching. Must be version 0.6.1
 # Package >= 4.1.1                              # Minimum version 4.1.1
