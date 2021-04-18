@@ -3,6 +3,9 @@
         "datahandler": {
             "dataset": "dataset/netflix_titles.csv"
         },
+        "eventhandler": {
+            "placeholder": "placeholder"
+        },
         "server": {
             "ip": "0.0.0.0",
             "port": 42069
