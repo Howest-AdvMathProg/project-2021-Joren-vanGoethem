@@ -1,5 +1,5 @@
 from backend import Backend
-from gui.MainWindow import MainWindow
+# from gui.MainWindow import MainWindow
 import json
 import sys
 # pylint: disable=no-name-in-module

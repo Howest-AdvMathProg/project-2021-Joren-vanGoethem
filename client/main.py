@@ -1,5 +1,5 @@
 from backend import Backend
-from gui import GUI
+from gui.gui import GUI
 from time import sleep
 import json
 import sys
@@ -19,7 +19,7 @@ try:
     Log.info('MAIN', 'Starting application...')
 
     backend.start()
-    gui.start()
+    gui.run()
 
     while backend.running or gui.running:
         sleep(0.1)
