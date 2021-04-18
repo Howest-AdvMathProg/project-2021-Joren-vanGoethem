@@ -164,7 +164,7 @@
         <string>Email</string>
        </property>
        <property name="buddy">
-        <cstring>PasswordField</cstring>
+        <cstring>EmailField</cstring>
        </property>
       </widget>
      </item>
@@ -264,7 +264,7 @@
         <string>Confirm Password</string>
        </property>
        <property name="buddy">
-        <cstring>PasswordField</cstring>
+        <cstring>ConfirmPasswordField</cstring>
        </property>
       </widget>
      </item>
@@ -325,8 +325,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>112</x>
-     <y>172</y>
+     <x>237</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -341,8 +341,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>172</y>
+     <x>305</x>
+     <y>282</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

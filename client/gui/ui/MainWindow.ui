@@ -27,27 +27,10 @@
     <property name="sizeConstraint">
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
-    <item row="0" column="0">
-     <widget class="QLabel" name="Resultlabel">
+    <item row="2" column="1">
+     <widget class="QPushButton" name="Searchbutton">
       <property name="text">
-       <string>Result</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPlainTextEdit" name="commandfield">
-      <property name="plainText">
-       <string>{
-  &quot;event&quot;: &quot;SEARCH&quot;,
-  &quot;data&quot;: {
-    &quot;query&quot;: {
-      &quot;column&quot;: &quot;&quot;,
-      &quot;value&quot;: &quot;&quot;
-    },
-    &quot;type&quot;: &quot;column&quot;,
-    &quot;exact&quot;: false
-  }
-}</string>
+       <string>Search</string>
       </property>
      </widget>
     </item>
@@ -58,10 +41,10 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="Searchbutton">
+    <item row="0" column="0">
+     <widget class="QLabel" name="Resultlabel">
       <property name="text">
-       <string>Search</string>
+       <string>Result</string>
       </property>
      </widget>
     </item>
@@ -81,6 +64,23 @@
       </attribute>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QPlainTextEdit" name="commandfield">
+      <property name="plainText">
+       <string>{
+  &quot;event&quot;: &quot;SEARCH&quot;,
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;column&quot;: &quot;&quot;,
+      &quot;value&quot;: &quot;&quot;
+    },
+    &quot;type&quot;: &quot;column&quot;,
+    &quot;exact&quot;: false
+  }
+}</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -96,19 +96,19 @@
     <property name="title">
      <string>Extra</string>
     </property>
-    <addaction name="actiontest"/>
     <addaction name="actionAbout"/>
+    <addaction name="actionGraph_view"/>
    </widget>
    <addaction name="menuExtra"/>
   </widget>
-  <action name="actiontest">
-   <property name="text">
-    <string>test</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionGraph_view">
+   <property name="text">
+    <string>Graph view</string>
    </property>
   </action>
  </widget>
