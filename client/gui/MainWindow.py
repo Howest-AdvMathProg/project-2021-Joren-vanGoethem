@@ -9,7 +9,7 @@ import re
 from random import randint
 
 from gui.ui.mainwindowui import Ui_MainWindow
-
+from gui.GraphView import GraphView
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, backend, parent=None):
@@ -22,8 +22,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
         self.actionGraph_view.triggered.connect(self.graph_view)
+        self.Searchbutton.clicked.connect(self.Search)
+
 #         self.actionUser.triggered.connect(self.LoginDialog)
 #         self.actionModerator.triggered.connect(self.ModeratorDialog)
+
+    def Search(self):
+        text = self.commandfield.toPlainText()
+        print(text)
+        #naar server
 
     def about(self):
         QMessageBox.about(
@@ -44,44 +51,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._GraphView.show()
         self._GraphView.ConfigureLayout()
 
-        self._GraphView.plot([1,2,3,4,5,6,7,8,9,10], [24,28,14,26,28,31,17,15,12,10])
-        self._GraphView.plot([8,7,9,5,1,2,13,5,7,8], [24,18,17,25,31,12,24,25,31,27])
+        self._GraphView.ChangeColor() # color in hex format optional. if not given will be random color
 
-class GraphView(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        loadUi('gui/ui/plot.ui', self)
-    
-    def ConfigureLayout(self):
-        self.Graph.setTitle("Graph",color="#000000")
-        self.Graph.setBackground('#e8e8e8')
-        styles = {'color':'#000000', 'font-size':'12px'}
-        self.Graph.setLabel('left', 'Temperature (°C)', **styles)
-        self.Graph.setLabel('bottom', 'Hour (H)', **styles)
-        self.Graph.showGrid(x=True, y=True)
-        self._color = "#FF0000"
+        # self._GraphView.plot([1,2,3,4,5,6,7,8,9,10], [24,28,14,26,28,31,17,15,12,10])
+        # self._GraphView.plot([8,7,9,5,1,2,13,5,7,8], [24,18,17,25,31,12,24,25,31,27])
+        self._GraphView.plot([1,2,3,4,5,6,7,8,9,10], [20,0,15,0,25,0,30,0,17,0])
 
-    def plot(self, x, y):
-        self.line = pg.mkPen({"color":self._color, "width":2, "cosmetic": True, "style": QtCore.Qt.SolidLine})
-        self.Graph.plot(x, y, pen=self.line)
-        self.ChangeColor()
-    
-    def ChangeColor(self, color="A"):
-        if color == "A":
-            random_number = randint(1048576,16777215)
-            hex_number = str(hex(random_number))
-            hex_number ='#'+ hex_number[2:]
-            self._color = hex_number
-        else:
-            match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color)
-            if match:
-                self._color = color
-            else:
-                QMessageBox.about(
-                    self,
-                    "Error",
-                    "the color code you provided was invalid"
-                )
-    
-    def clear(self):
-        self.Graph.clear()
