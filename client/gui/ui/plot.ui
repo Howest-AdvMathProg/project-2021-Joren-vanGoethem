@@ -6,16 +6,65 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>493</width>
-    <height>339</height>
+    <width>705</width>
+    <height>368</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
+   <item row="1" column="1">
+    <widget class="QPlainTextEdit" name="plainTextEdit">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>200</height>
+      </size>
+     </property>
+     <property name="plainText">
+      <string>{
+  &quot;event&quot;: &quot;GRAPH&quot;,
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;columnx&quot;: &quot;&quot;,
+      &quot;columny&quot;: &quot;&quot;
+    },
+  }
+}</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Search Command</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
-    <widget class="PlotWidget" name="Graph" native="true"/>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Graph</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2">
+    <widget class="PlotWidget" name="Graph" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>200</height>
+      </size>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

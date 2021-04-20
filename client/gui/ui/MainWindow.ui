@@ -92,23 +92,41 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
    <widget class="QMenu" name="menuExtra">
     <property name="title">
      <string>Extra</string>
     </property>
-    <addaction name="actionAbout"/>
     <addaction name="actionGraph_view"/>
+    <addaction name="actionDataset_Info"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuExtra"/>
+   <addaction name="menuAbout"/>
   </widget>
-  <action name="actionAbout">
-   <property name="text">
-    <string>About</string>
-   </property>
-  </action>
   <action name="actionGraph_view">
    <property name="text">
     <string>Graph view</string>
+   </property>
+  </action>
+  <action name="actionDataset_Info">
+   <property name="text">
+    <string>Dataset Info</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

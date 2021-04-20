@@ -27,10 +27,10 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        self.actionAbout = QAction(MainWindow)
-        self.actionAbout.setObjectName(u"actionAbout")
         self.actionGraph_view = QAction(MainWindow)
         self.actionGraph_view.setObjectName(u"actionGraph_view")
+        self.actionDataset_Info = QAction(MainWindow)
+        self.actionDataset_Info.setObjectName(u"actionDataset_Info")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
@@ -73,11 +73,14 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QRect(0, 0, 703, 30))
         self.menuExtra = QMenu(self.menubar)
         self.menuExtra.setObjectName(u"menuExtra")
+        self.menuAbout = QMenu(self.menubar)
+        self.menuAbout.setObjectName(u"menuAbout")
         MainWindow.setMenuBar(self.menubar)
 
         self.menubar.addAction(self.menuExtra.menuAction())
-        self.menuExtra.addAction(self.actionAbout)
+        self.menubar.addAction(self.menuAbout.menuAction())
         self.menuExtra.addAction(self.actionGraph_view)
+        self.menuExtra.addAction(self.actionDataset_Info)
 
         self.retranslateUi(MainWindow)
 
@@ -86,8 +89,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Python Client", None))
-        self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.actionGraph_view.setText(QCoreApplication.translate("MainWindow", u"Graph view", None))
+        self.actionDataset_Info.setText(QCoreApplication.translate("MainWindow", u"Dataset Info", None))
         self.Searchbutton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.commandlabel.setText(QCoreApplication.translate("MainWindow", u"Search Command", None))
         self.Resultlabel.setText(QCoreApplication.translate("MainWindow", u"Result", None))
@@ -103,5 +106,5 @@ class Ui_MainWindow(object):
 "  }\n"
 "}", None))
         self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Extra", None))
+        self.menuAbout.setTitle(QCoreApplication.translate("MainWindow", u"About", None))
     # retranslateUi
-
