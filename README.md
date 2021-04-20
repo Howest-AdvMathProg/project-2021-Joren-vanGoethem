@@ -10,3 +10,5 @@ Multi-Client Server in Python
 # TO DO
 * GUI client side +code
 * GUI server side +code
+* column list read only maken
+* Dataset preview sorting uitschakelen
