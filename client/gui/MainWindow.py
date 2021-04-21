@@ -11,23 +11,24 @@ from random import randint
 from gui.ui.mainwindowui import Ui_MainWindow
 from gui.GraphView import GraphView
 from gui.DatasetView import DatasetView
+from gui.Login import Login
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, backend, parent=None):
         super().__init__(parent)
         self.setupUi(self)
         self.connectSignalsSlots()
-
         self.backend = backend
+        self.Login() # self.User will be created by the login class
            
+    def Login(self):
+        self._Login = Login(self)
+
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
         self.actionGraph_view.triggered.connect(self.graph_view)
         self.Searchbutton.clicked.connect(self.search)
         self.actionDataset_Info.triggered.connect(self.dataset_info)
-
-#         self.actionUser.triggered.connect(self.LoginDialog)
-#         self.actionModerator.triggered.connect(self.ModeratorDialog)
 
     def dataset_info(self):
         self._DatasetView = DatasetView(self)
