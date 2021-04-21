@@ -13,8 +13,11 @@ class DataHandler():
 
     def get_columns(self):
         return list(self._df.columns)
+    
+    def get_rows(self, count:int = 10):
+        return self._df.head(count)
 
-    def search_all(self, query, exact=False):
+    def search_all(self, query:str, exact=False):
         columns = list(self._df.columns)
         df = None
         if exact:
@@ -29,7 +32,7 @@ class DataHandler():
                     df = self._df.loc[self._df[column].str.contains(query, case=False)]
         return df
 
-    def search_column(self, column, query, exact=False):
+    def search_column(self, column:str, query:str, exact=False):
         if exact:
             return self._df[self._df[column] == query]
         else:
