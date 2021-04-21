@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
+    <width>597</width>
     <height>368</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Graph</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="1,0">
    <item row="1" column="1">
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QPlainTextEdit" name="CommandField">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -36,23 +36,23 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="SearchLabel">
      <property name="text">
       <string>Search Command</string>
      </property>
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="Graphlabel">
      <property name="text">
       <string>Graph</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="EnterButton">
      <property name="text">
-      <string>PushButton</string>
+      <string>Enter</string>
      </property>
     </widget>
    </item>

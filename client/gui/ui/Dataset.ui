@@ -11,11 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Dataset Info</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
    <item row="1" column="0">
-    <widget class="QListView" name="ColumnList"/>
+    <widget class="QListView" name="ColumnList">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
    </item>
    <item row="0" column="0">
     <widget class="QLabel" name="ColumnsLabel">
@@ -26,8 +30,11 @@
    </item>
    <item row="1" column="1">
     <widget class="QTableView" name="DataframeTable">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
      <property name="sortingEnabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
    </item>
