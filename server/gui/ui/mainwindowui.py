@@ -18,11 +18,12 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(750, 325)
+        MainWindow.resize(459, 336)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -45,6 +46,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.MainField = QTextEdit(self.centralwidget)
         self.MainField.setObjectName(u"MainField")
+        self.MainField.setReadOnly(True)
 
         self.verticalLayout.addWidget(self.MainField)
 
@@ -91,7 +93,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 750, 30))
+        self.menubar.setGeometry(QRect(0, 0, 459, 30))
         self.menuLog = QMenu(self.menubar)
         self.menuLog.setObjectName(u"menuLog")
         self.menuExtra = QMenu(self.menubar)
@@ -126,3 +128,4 @@ class Ui_MainWindow(object):
         self.menuLog.setTitle(QCoreApplication.translate("MainWindow", u"Log", None))
         self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Extra", None))
     # retranslateUi
+

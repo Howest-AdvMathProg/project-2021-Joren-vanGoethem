@@ -26,7 +26,7 @@ class DatasetView(QDialog):
     def GetDatasetInfo(self):
         self._df = pd.read_csv("dataset/netflix_titles.csv")
         self.columns = list(self._df.columns)
-        self.datasethead = self._df.head(10)
+        self.datasethead = self._df.tail(10)
         # self.columns = self.MainWindow.backend.send("COLUMNS OFZO")
         # self.datasethead = self.MainWindow.backend.send("HEAD 10 OFZO")
         pass

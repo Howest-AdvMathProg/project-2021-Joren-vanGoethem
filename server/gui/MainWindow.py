@@ -2,7 +2,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
 from gui.ui.mainwindowui import Ui_MainWindow
-
+from gui.QueryLog import QueryLog
+from gui.ServerLog import ServerLog
+from gui.ActiveUsers import ActiveUsers
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, backend, parent=None):
@@ -15,6 +17,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
         self.CommandEnterBtn.clicked.connect(self.test)
+        self.actionQuery_Log.triggered.connect(self.Query_Log)
+        self.actionServer_Log.triggered.connect(self.Server_Log)
+        self.actionActive_Users.triggered.connect(self.Active_Users)
     #     self.actionUser.triggered.connect(self.LoginDialog)
     #     self.actionModerator.triggered.connect(self.ModeratorDialog)
 
@@ -34,6 +39,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "<p>Made by:</p>"
             "<p>Andreas Maerten & Joren vanGoethem</p>",
         )
+    
+    def Query_Log(self):
+        self._Query_Log = QueryLog(self)
+
+    def Server_Log(self):
+        self._Server_Log = ServerLog(self)
+
+    def Active_Users(self):
+        self._Active_Users = ActiveUsers(self)
 
 
     # def LoginDialog(self):
