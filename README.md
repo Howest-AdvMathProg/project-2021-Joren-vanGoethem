@@ -15,3 +15,4 @@ Multi-Client Server in Python
 * GUI server side +code
 * Communicatie Client-Server
 * Single return event name server -> client
+* Fix: broadcast crashing GUI thread
