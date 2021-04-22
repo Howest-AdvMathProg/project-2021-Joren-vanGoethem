@@ -7,6 +7,9 @@ import sys  # We need sys so that we can pass argv to QApplication
 import os
 import re
 from random import randint
+import json
+import pandas as pd
+from util.PandasModel import PandasModel
 
 from gui.ui.mainwindowui import Ui_MainWindow
 from gui.GraphView import GraphView
@@ -19,8 +22,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.connectSignalsSlots()
         self.backend = backend
+
+        self.commandfield.setPlainText("""{
+"query": {
+    "column": "title",
+    "value": "zz"
+},
+    "type": "column",
+    "exact": false
+}""")
+
         self.Login() # self.User will be created by the login class
-           
+
     def Login(self):
         self._Login = Login(self)
 
@@ -36,8 +49,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def search(self):
         text = self.commandfield.toPlainText()
-        print(text)
-        #naar server
+
+        self.backend.send_event("SEARCH", json.loads(text))
+
+        data = self.backend.get_data()
+        if not data: # timeout
+            return
+
+        df = pd.DataFrame.from_dict(data)
+        tablemodel = PandasModel(df)
+
+        self.ResultTable.setModel(tablemodel)
 
     def about(self):
         QMessageBox.about(
