@@ -23,21 +23,19 @@ class DatasetView(QDialog):
 
         self.run()
 
-    def GetDatasetInfo(self):
-        self._df = pd.read_csv("dataset/netflix_titles.csv")
-        self.columns = list(self._df.columns)
-        self.datasethead = self._df.tail(10)
-        # self.columns = self.MainWindow.backend.send("COLUMNS OFZO")
-        # self.datasethead = self.MainWindow.backend.send("HEAD 10 OFZO")
-        pass
-    
     def run(self):
-        self.GetDatasetInfo()
+        self.MainWindow.backend.send_event("GET_DATA_SAMPLE")
 
-        self.tablemodel = PandasModel(self.datasethead)
-        self.DataframeTable.setModel(self.tablemodel)
-        
-        for i in self.columns:
+        data = self.MainWindow.backend.get_data()
+        if not data: # timeout
+            return
+
+        df = pd.DataFrame.from_dict(data["sample"])
+
+        tablemodel = PandasModel(df)
+        self.DataframeTable.setModel(tablemodel)
+
+        for i in data["columns"]:
             item = QtGui.QStandardItem(i)
             self.listmodel.appendRow(item)
         self.show()
