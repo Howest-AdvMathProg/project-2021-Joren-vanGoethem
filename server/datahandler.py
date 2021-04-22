@@ -13,19 +13,19 @@ class DataHandler():
 
     def get_columns(self):
         return list(self._df.columns)
-    
-    def get_rows(self, count:int = 10):
-        return self._df.head(count)
+
+    def get_sample(self, count:int = 10):
+        return self._df[-1 * count:].to_dict()
 
     def search_all(self, query:str, exact=False):
         columns = list(self._df.columns)
         df = None
         if exact:
             for column in columns:
-                if isinstance(df, pd.DataFrame): 
+                if isinstance(df, pd.DataFrame):
                     df = pd.concat([df,self._df[self._df[column] == query]])
-                else: 
-                    df = self._df[self._df[column] == query] 
+                else:
+                    df = self._df[self._df[column] == query]
         else:
             for column in columns:
                 if self._df[column].dtypes == object:
@@ -59,7 +59,7 @@ class DataHandler():
 # result = test.search_column('title', 'days')
 # print(result)
 
-# result = test.search_columns(['title', 'country'], 'belgium') 
+# result = test.search_columns(['title', 'country'], 'belgium')
 # print(result.head())
 
 # result = test.search_all('a')
