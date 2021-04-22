@@ -38,12 +38,18 @@ class EventHandler(threading.Thread):
     def terminate(self):
         self._running = False
 
-# 
+#
 # Socket events below this
-# 
+#
 
     def broadcast(self, client, data):
         self.backend.broadcast(data)
+
+    def get_data_sample(self, client, data):
+        client.send_event("GET_DATA_SAMPLE", {
+            "columns": self.backend.datahandler.get_columns(),
+            "sample": self.backend.datahandler.get_sample()
+        })
 
     def get_log(self, client, data):
         pass
@@ -55,7 +61,9 @@ class EventHandler(threading.Thread):
         client.send_event("GET_USER_SEARCHES", client.searches)
 
     def identify(self, client, data):
-        client.identify(data["data"])
+        client.identify(data)
+
+        client.send_event("IDENTIFY", client.addr)
 
     def list_users(self, client, data):
         clients = []
@@ -65,7 +73,7 @@ class EventHandler(threading.Thread):
 
             clients.append({
                 "id": identifier,
-                "info": client.identity()
+                "info": client.identity
             })
 
         client.send_event("LIST_USERS", clients)
@@ -74,22 +82,19 @@ class EventHandler(threading.Thread):
         pass
 
     def message(self, client, data):
-        data = data["data"]
         identifier = data["id"]
-        
+
         target = self.backend.get_client(identifier)
         target.send_event("MESSAGE", data["message"])
 
     def search(self, client, data):
-        search = data.data
+        client.searches.append(data)
 
-        client.searches.append(search)
+        if data["type"] == 'all':
+            data = self.backend.datahandler.search_all(data["query"], data["exact"])
+        elif data["type"] == 'column':
+            data = self.backend.datahandler.search_column(data["query"]["column"], data["query"]["value"], data["exact"])
+        elif data["type"] == 'columns':
+            data = self.backend.datahandler.search_columns(data["query"]["columns"], data["query"]["values"], data["exact"])
 
-        if search["type"] == 'all':
-            data = self.backend.datahandler.search_all(search["query"], search["exact"])
-        elif search["type"] == 'column':
-            data = self.backend.datahandler.search_column(search.query["column"], search.query["value"], search["exact"])
-        elif search["type"] == 'columns':
-            data = self.backend.datahandler.search_columns(search.query["columns"], search.query["values"], search["exact"])
-
-        client.send_event("SEARCH", data)
+        client.send_event("SEARCH", data.to_dict())
