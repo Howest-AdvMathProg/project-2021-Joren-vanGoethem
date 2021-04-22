@@ -60,7 +60,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Command Input:</string>
+         <string>Send Broadcast:</string>
         </property>
         <property name="buddy">
          <cstring>CommandField</cstring>

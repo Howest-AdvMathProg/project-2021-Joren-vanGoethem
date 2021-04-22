@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
         self.actionServer_Log.setText(QCoreApplication.translate("MainWindow", u"Server Log", None))
         self.actionActive_Users.setText(QCoreApplication.translate("MainWindow", u"Active Users", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
-        self.CommandLabel.setText(QCoreApplication.translate("MainWindow", u"Command Input:", None))
+        self.CommandLabel.setText(QCoreApplication.translate("MainWindow", u"Send Broadcast:", None))
         self.CommandEnterBtn.setText(QCoreApplication.translate("MainWindow", u"Enter", None))
         self.menuLog.setTitle(QCoreApplication.translate("MainWindow", u"Log", None))
         self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Extra", None))
