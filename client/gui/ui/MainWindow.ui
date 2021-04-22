@@ -67,17 +67,7 @@
     <item row="1" column="1">
      <widget class="QPlainTextEdit" name="commandfield">
       <property name="plainText">
-       <string>{
-  &quot;event&quot;: &quot;SEARCH&quot;,
-  &quot;data&quot;: {
-    &quot;query&quot;: {
-      &quot;column&quot;: &quot;&quot;,
-      &quot;value&quot;: &quot;&quot;
-    },
-    &quot;type&quot;: &quot;column&quot;,
-    &quot;exact&quot;: false
-  }
-}</string>
+       <string></string>
       </property>
      </widget>
     </item>

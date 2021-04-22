@@ -100,17 +100,6 @@ class Ui_MainWindow(object):
         self.Searchbutton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
         self.commandlabel.setText(QCoreApplication.translate("MainWindow", u"Search Command", None))
         self.Resultlabel.setText(QCoreApplication.translate("MainWindow", u"Result", None))
-        self.commandfield.setPlainText(QCoreApplication.translate("MainWindow", u"{\n"
-"  \"event\": \"SEARCH\",\n"
-"  \"data\": {\n"
-"    \"query\": {\n"
-"      \"column\": \"\",\n"
-"      \"value\": \"\"\n"
-"    },\n"
-"    \"type\": \"column\",\n"
-"    \"exact\": false\n"
-"  }\n"
-"}", None))
         self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Extra", None))
         self.menuAbout.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
     # retranslateUi
