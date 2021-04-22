@@ -10,6 +10,7 @@ colors = {
 
 class Log():
     log_level = 'INFO'
+    on_log = None # logger callback
 
     # fallback to old method
     def __init__(self, *args):
@@ -29,8 +30,11 @@ class Log():
         if show_time:
             currentDate = datetime.datetime.now()
             log = f'[{currentDate.strftime("%H:%M:%S")}] '
-            
+
             color = colors[level]
+
+        if Log.on_log:
+            Log.on_log('{}[{}/{}] {}'.format(log, name, level, message))
 
         print('{}{}[{:<8s}/{:>5s}]{} {}'.format(log, color[0], name, level, color[1], message))
 

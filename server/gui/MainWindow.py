@@ -1,3 +1,4 @@
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUi
 
@@ -6,6 +7,8 @@ from gui.QueryLog import QueryLog
 from gui.ServerLog import ServerLog
 from gui.ActiveUsers import ActiveUsers
 
+from util.logger import Log
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, backend, parent=None):
         super().__init__(parent)
@@ -13,7 +16,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.connectSignalsSlots()
 
         self.backend = backend
-           
+
+        Log.on_log = self.update_log
+
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
         self.CommandEnterBtn.clicked.connect(self.test)
@@ -39,7 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             "<p>Made by:</p>"
             "<p>Andreas Maerten & Joren vanGoethem</p>",
         )
-    
+
     def Query_Log(self):
         self._Query_Log = QueryLog(self)
 
@@ -49,6 +54,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def Active_Users(self):
         self._Active_Users = ActiveUsers(self)
 
+    def update_log(self, log):
+        self.MainField.moveCursor(QTextCursor.End)
+        self.MainField.insertPlainText("%s\n" % log)
+        self.MainField.moveCursor(QTextCursor.End)
 
     # def LoginDialog(self):
     #     dialog = LoginDialog(self)
@@ -62,7 +71,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 #     def __init__(self, parent=None):
 #         super().__init__(parent)
 #         loadUi('gui/ui/Login.ui', self)
-    
+
 # class ModeratorDialog(QDialog):
 #     def __init__(self, parent=None):
 #         super().__init__(parent)
