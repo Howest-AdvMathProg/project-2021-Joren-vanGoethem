@@ -46,7 +46,7 @@ class EventHandler(threading.Thread):
         self.backend.broadcast(data)
 
     def get_data_sample(self, client, data):
-        client.send_event("GET_DATA_SAMPLE", {
+        client.send_event("DATA", {
             "columns": self.backend.datahandler.get_columns(),
             "sample": self.backend.datahandler.get_sample()
         })
@@ -97,4 +97,4 @@ class EventHandler(threading.Thread):
         elif data["type"] == 'columns':
             data = self.backend.datahandler.search_columns(data["query"]["columns"], data["query"]["values"], data["exact"])
 
-        client.send_event("SEARCH", data.to_dict())
+        client.send_event("DATA", data.to_dict())

@@ -16,7 +16,7 @@ class GUI():
 
     def run(self):
         Log.info('GUI', 'Running')
-        
+
         self.app = QApplication(sys.argv)
         self.main_window = MainWindow(self.backend)
 
@@ -26,13 +26,6 @@ class GUI():
 
         self.backend.terminate()
         self.terminate()
-
-        # naar ui verplaatsen?
-        while self._running:
-            event = input("EVENT > ")
-            data = input("DATA > ")
-
-            self.backend.send_event(event, data)
 
     def terminate(self):
         if self._running:

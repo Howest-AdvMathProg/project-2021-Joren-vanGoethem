@@ -23,6 +23,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.connectSignalsSlots()
         self.backend = backend
 
+        self.backend.broadcast = self.on_broadcast
+
         self.commandfield.setPlainText("""{
     "query": {
         "column": "title",
@@ -46,6 +48,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def dataset_info(self):
         self._DatasetView = DatasetView(self)
 
+    def on_broadcast(self, data):
+        QMessageBox.about(self, "Broadcast", data)
 
     def search(self):
         text = self.commandfield.toPlainText()

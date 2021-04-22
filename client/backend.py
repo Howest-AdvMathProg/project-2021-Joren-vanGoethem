@@ -21,6 +21,7 @@ class Backend(threading.Thread):
         self.host = host
         self.port = port
 
+        self.broadcast = None # Broadcast event callback
         self.data = None # Temp place to store our socket data
         self.identified = False # Tell our frontend we have successfully "logged in"
 

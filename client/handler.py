@@ -39,11 +39,12 @@ class EventHandler(threading.Thread):
 #
 # Socket events below this
 #
-    def get_data_sample(self, data):
+    def broadcast(self, data):
+        if self.backend.broadcast:
+            self.backend.broadcast(data)
+
+    def data(self, data):
         self.backend.data = data
 
     def identify(self, data):
         self.backend.identified = True
-
-    def search(self, data):
-        self.backend.data = data
