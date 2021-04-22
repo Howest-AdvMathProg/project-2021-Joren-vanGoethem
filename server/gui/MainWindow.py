@@ -21,15 +21,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def connectSignalsSlots(self):
         self.actionAbout.triggered.connect(self.about)
-        self.CommandEnterBtn.clicked.connect(self.test)
+        self.CommandEnterBtn.clicked.connect(self.SendBroadcast)
         self.actionQuery_Log.triggered.connect(self.Query_Log)
         self.actionServer_Log.triggered.connect(self.Server_Log)
         self.actionActive_Users.triggered.connect(self.Active_Users)
     #     self.actionUser.triggered.connect(self.LoginDialog)
     #     self.actionModerator.triggered.connect(self.ModeratorDialog)
-
-    def test(self):
-        print('test')
 
     def about(self):
         QMessageBox.about(
@@ -50,6 +47,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def Server_Log(self):
         self._Server_Log = ServerLog(self)
+
+    def SendBroadcast(self):
+        self.backend.broadcast(self.CommandField.toPlainText())
+        self.CommandField.clear()
 
     def Active_Users(self):
         self._Active_Users = ActiveUsers(self)
