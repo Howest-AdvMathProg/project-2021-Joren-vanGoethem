@@ -5,6 +5,7 @@ import sys  # We need sys so that we can pass argv to QApplication
 
 from gui.ui.mainwindowui import Ui_MainWindow
 from User import User
+from time import sleep
 
 class Login(QDialog):
     def __init__(self, MainWindow, parent=None):
@@ -32,14 +33,25 @@ class Login(QDialog):
                 Password = field.text()
 
         matching = False
-        if len(empty)>0:
+        if len(empty) > 0:
             self.empty_fields(empty)
         else:
             matching = self.checkPasswords()
 
         if matching:
-            self._MainWindow.User = User(Name, NickName, Email, Password)
-            print('Login')
+            user = User(Name, NickName, Email, Password)
+
+            self._MainWindow.User = user
+
+            self._MainWindow.backend.send_event("IDENTIFY", user.to_json())
+
+            for i in range(1000):
+                if self._MainWindow.backend.identified:
+                    break
+                sleep(.01)
+            if not self._MainWindow.backend.identified:
+                return
+
             self.Logged_in = True
             self.close()
 
