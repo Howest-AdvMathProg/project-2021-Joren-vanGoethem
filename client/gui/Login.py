@@ -31,11 +31,12 @@ class Login(QDialog):
             elif "password" in field.objectName().lower():
                 Password = field.text()
 
+        matching = False
         if len(empty)>0:
             self.empty_fields(empty)
         else:
             matching = self.checkPasswords()
-        
+
         if matching:
             self._MainWindow.User = User(Name, NickName, Email, Password)
             print('Login')
@@ -53,7 +54,7 @@ class Login(QDialog):
         else:
             self.different_passwords()
             return False
-       
+
     def empty_fields(self, fields):
         html = "<ul>"
         for field in fields:
@@ -66,7 +67,7 @@ class Login(QDialog):
             "<p>The following fields were not filled in correctly:</p>"
             f"{html}",
         )
-    
+
     def different_passwords(self):
         QMessageBox.about(
             self,
