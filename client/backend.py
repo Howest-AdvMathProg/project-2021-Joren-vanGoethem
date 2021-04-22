@@ -3,6 +3,7 @@ import queue
 import socket
 import struct
 import threading
+from time import sleep
 from handler import EventHandler
 # pylint: disable=no-name-in-module
 from util.logger import Log
@@ -20,6 +21,9 @@ class Backend(threading.Thread):
         self.host = host
         self.port = port
 
+        self.data = None # Temp place to store our socket data
+        self.identified = False # Tell our frontend we have successfully "logged in"
+
     @property
     def queue(self):
         return self._queue
@@ -27,6 +31,20 @@ class Backend(threading.Thread):
     @property
     def running(self):
         return self._running
+
+    def get_data(self):
+        try:
+            for i in range(1000):
+                if self.data:
+                    return self.data
+                sleep(0.01)
+            if not self.data: # search timeout
+                return None
+        except Exception as e:
+            print(e)
+            print("This should not happen, but it might")
+        finally:
+            self.data = None
 
     def handle_message(self):
         size = struct.unpack('>i', self.s.recv(4))[0]
@@ -63,17 +81,17 @@ class Backend(threading.Thread):
                 break
 
         self._handler.terminate()
-            
+
 
     def send(self, json_data):
         data = json.dumps(json_data).encode()
-        
+
         # send the size of our message
         self.s.sendall(struct.pack('>i', len(data)))
         # send the message
         self.s.sendall(data)
 
-    def send_event(self, event, data):
+    def send_event(self, event, data = {}):
         self.send({ "event" : event, "data" : data })
 
     def terminate(self):
