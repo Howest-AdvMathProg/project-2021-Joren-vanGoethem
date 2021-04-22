@@ -24,10 +24,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.backend = backend
 
         self.commandfield.setPlainText("""{
-"query": {
-    "column": "title",
-    "value": "zz"
-},
+    "query": {
+        "column": "title",
+        "value": "zz"
+    },
     "type": "column",
     "exact": false
 }""")
