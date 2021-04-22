@@ -33,8 +33,17 @@ class EventHandler(threading.Thread):
 
             self.backend.queue.task_done()
 
-    def message(self, data):
-        print(data)
-
     def terminate(self):
         self._running = False
+
+#
+# Socket events below this
+#
+    def get_data_sample(self, data):
+        self.backend.data = data
+
+    def identify(self, data):
+        self.backend.identified = True
+
+    def search(self, data):
+        self.backend.data = data
