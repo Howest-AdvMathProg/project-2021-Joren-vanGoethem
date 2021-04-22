@@ -12,7 +12,12 @@ class Client(threading.Thread):
 
         self._addr = addr
         self._conn = conn
-        self._identity = None
+        self._identity = {
+            "username": "unknown",
+            "nickname": "unknown",
+            'email': "unknown",
+            'password': "unknown"
+        }
 
         self.backend = backend
         self.searches = []
@@ -64,7 +69,7 @@ class Client(threading.Thread):
 
     def send(self, json_data):
         data = json.dumps(json_data).encode()
-        
+
         # send the size of our message
         self._conn.sendall(struct.pack('>i', len(data)))
         # send the message

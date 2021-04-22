@@ -24,6 +24,10 @@ class Backend(threading.Thread):
         self.port = config["server"]["port"]
 
     @property
+    def clients(self):
+        return self._clients
+
+    @property
     def queue(self):
         return self._queue
 
@@ -72,7 +76,7 @@ class Backend(threading.Thread):
     def terminate(self):
         if self._running:
             Log.info('BACKEND', 'Terminating...')
-            
+
             self._eventhandler.terminate()
 
             self._running = False
