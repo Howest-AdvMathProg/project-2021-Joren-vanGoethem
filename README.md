@@ -16,3 +16,5 @@ Multi-Client Server in Python
 * Communicatie Client-Server
 * Single return event name server -> client
 * Fix: broadcast crashing GUI thread
+* integer lookup
+* active user update while open

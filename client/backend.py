@@ -35,7 +35,7 @@ class Backend(threading.Thread):
 
     def get_data(self):
         try:
-            for i in range(1000):
+            for i in range(300):
                 if self.data:
                     return self.data
                 sleep(0.01)

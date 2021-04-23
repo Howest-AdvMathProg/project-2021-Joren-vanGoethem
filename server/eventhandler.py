@@ -1,4 +1,5 @@
 import threading
+import pandas as pd
 from time import sleep
 # pylint: disable=no-name-in-module
 from util.logger import Log
@@ -97,4 +98,4 @@ class EventHandler(threading.Thread):
         elif data["type"] == 'columns':
             data = self.backend.datahandler.search_columns(data["query"]["columns"], data["query"]["values"], data["exact"])
 
-        client.send_event("DATA", data.to_dict())
+        client.send_event("DATA", {} if not isinstance(data, pd.DataFrame) or data.empty else data.to_dict())

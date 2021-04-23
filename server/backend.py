@@ -19,6 +19,7 @@ class Backend(threading.Thread):
         self._eventhandler = EventHandler(self, config["eventhandler"])
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self.host = config["server"]["ip"]
         self.port = config["server"]["port"]
