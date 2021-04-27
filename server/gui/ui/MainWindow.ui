@@ -107,7 +107,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Enter</string>
+         <string>Send</string>
         </property>
        </widget>
       </item>
@@ -129,14 +129,12 @@
      <string>Log</string>
     </property>
     <addaction name="actionQuery_Log"/>
-    <addaction name="actionServer_Log"/>
     <addaction name="actionActive_Users"/>
    </widget>
    <widget class="QMenu" name="menuExtra">
     <property name="title">
-     <string>Extra</string>
+     <string>Help</string>
     </property>
-    <addaction name="actiontest"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuLog"/>

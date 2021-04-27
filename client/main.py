@@ -28,10 +28,8 @@ except (Exception, KeyboardInterrupt) as e:
         Log.info('MAIN', 'Received keyboard interrupt')
     else:
         print("Unexpected error...")
-
         print(e)
 finally:
     backend.terminate()
     gui.terminate()
-
     sys.exit()
