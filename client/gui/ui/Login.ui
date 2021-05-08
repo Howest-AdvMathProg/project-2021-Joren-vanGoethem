@@ -63,6 +63,9 @@
        <property name="text">
         <string>Name</string>
        </property>
+       <property name="buddy">
+        <cstring>NameField</cstring>
+       </property>
       </widget>
      </item>
      <item row="1" column="0">
@@ -88,6 +91,9 @@
        <property name="text">
         <string>Nickname</string>
        </property>
+       <property name="buddy">
+        <cstring>NickNameField</cstring>
+       </property>
       </widget>
      </item>
      <item row="2" column="0">
@@ -112,6 +118,9 @@
        </property>
        <property name="text">
         <string>Email</string>
+       </property>
+       <property name="buddy">
+        <cstring>EmailField</cstring>
        </property>
       </widget>
      </item>
@@ -280,6 +289,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>NameField</tabstop>
+  <tabstop>NickNameField</tabstop>
+  <tabstop>EmailField</tabstop>
+  <tabstop>PasswordField</tabstop>
+  <tabstop>ConfirmPasswordField</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
