@@ -83,10 +83,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self._GraphView = GraphView(self)
         self._GraphView.show()
         self._GraphView.ConfigureLayout()
-
         self._GraphView.ChangeColor() # color in hex format optional. if not given will be random color
+        self._GraphView.showGraph()
 
-        # self._GraphView.plot([1,2,3,4,5,6,7,8,9,10], [24,28,14,26,28,31,17,15,12,10])
-        # self._GraphView.plot([8,7,9,5,1,2,13,5,7,8], [24,18,17,25,31,12,24,25,31,27])
-        self._GraphView.plot([1,2,3,4,5,6,7,8,9,10], [20,0,15,0,25,0,30,0,17,0])
 
