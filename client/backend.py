@@ -68,7 +68,18 @@ class Backend(threading.Thread):
     def run(self):
         Log.info('BACKEND', 'Running')
 
-        self.s.connect((self.host, self.port))
+        attempts = 5
+        for i in range(attempts):
+            try:
+                self.s.connect((self.host, self.port))
+
+                break
+            except ConnectionRefusedError as e:
+                Log.warning('BACKEND', f"Could not connect to server on {self.host}:{self.port}, retrying...")
+                sleep(1)
+
+            if i == attempts - 1:
+                self._running = False
 
         self._handler.start()
 
