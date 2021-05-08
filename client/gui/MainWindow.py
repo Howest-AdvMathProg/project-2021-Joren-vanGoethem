@@ -26,13 +26,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.backend.broadcast = self.on_broadcast
 
         self.commandfield.setPlainText("""{
-    "query": {
-        "column": "title",
-        "value": "zz"
-    },
-    "type": "column",
-    "exact": false
-}""")
+            "query": {
+                "column": "title",
+                "value": "zz"
+            },
+            "type": "column",
+            "exact": false
+        }""")
 
         self.Login() # self.User will be created by the login class
 
