@@ -36,11 +36,14 @@ class Client(threading.Thread):
 
     def handle_message(self):
         # read the size from our buffer
-        size = struct.unpack('>i', self._conn.recv(4))[0]
+        size = self._conn.recv(4)
         if not size:
             return
+        size = struct.unpack('>i', size)[0]
         # read data
         data = self._conn.recv(size)
+        if not data:
+            return
 
         Log.verbose('BACKEND', data)
 

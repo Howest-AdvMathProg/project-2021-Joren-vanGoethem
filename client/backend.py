@@ -48,11 +48,15 @@ class Backend(threading.Thread):
             self.data = None
 
     def handle_message(self):
-        size = struct.unpack('>i', self.s.recv(4))[0]
+        # read the size from our buffer
+        size = self.s.recv(4)
         if not size:
             return
+        size = struct.unpack('>i', size)[0]
         # read data
         data = self.s.recv(size)
+        if not data:
+            return
 
         Log.verbose('BACKEND', data)
 
