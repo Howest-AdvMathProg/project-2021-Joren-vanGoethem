@@ -24,6 +24,9 @@ class Log():
             print('Invalid error logging level, please use one of the following:', level_types)
             return
 
+        if level_types.index(level) < level_types.index(Log.log_level):
+            return
+
         log = ''
         color = ('', '')
 

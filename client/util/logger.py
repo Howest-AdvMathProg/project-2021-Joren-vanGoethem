@@ -23,13 +23,16 @@ class Log():
             print('Invalid error logging level, please use one of the following:', level_types)
             return
 
+        if level_types.index(level) < level_types.index(Log.log_level):
+            return
+
         log = ''
         color = ('', '')
 
         if show_time:
             currentDate = datetime.datetime.now()
             log = f'[{currentDate.strftime("%H:%M:%S")}] '
-            
+
             color = colors[level]
 
         print('{}{}[{:<8s}/{:>5s}]{} {}'.format(log, color[0], name, level, color[1], message))
