@@ -19,6 +19,8 @@ with open("config.json", "r") as f:
 backend = Backend(config["backend"])
 gui = GUI(backend)
 
+Log.log_level = 'VERB'
+
 try:
     Log.info('MAIN', 'Starting application...')
 

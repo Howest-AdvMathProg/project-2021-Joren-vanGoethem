@@ -15,6 +15,8 @@ port = config["backend"]["port"]
 backend = Backend(host, port)
 gui = GUI(backend)
 
+Log.log_level = 'INFO'
+
 try:
     Log.info('MAIN', 'Starting application...')
 
