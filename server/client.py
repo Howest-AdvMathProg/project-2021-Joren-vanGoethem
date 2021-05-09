@@ -20,7 +20,6 @@ class Client(threading.Thread):
         }
 
         self.backend = backend
-        self.searches = []
 
     @property
     def active(self):
