@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>527</width>
-    <height>240</height>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,17 @@
    <item row="0" column="0">
     <widget class="QTableView" name="UsersTable">
      <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+      <set>QAbstractItemView::DoubleClicked</set>
      </property>
      <property name="sortingEnabled">
       <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="refresh_users_button">
+     <property name="text">
+      <string>Refresh</string>
      </property>
     </widget>
    </item>
