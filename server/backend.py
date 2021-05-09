@@ -7,6 +7,12 @@ from eventhandler import EventHandler
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
+"""
+The backend is a central class which manages incoming clients
+
+It contains eventhandler and datahandler classes for routing communication between client and server.
+
+"""
 class Backend(threading.Thread):
     def __init__(self, config):
         threading.Thread.__init__(self, daemon=True)

@@ -4,6 +4,11 @@ import threading
 # pylint: disable=no-name-in-module
 from util.logger import Log
 
+"""
+Every client has its own class and each class lives in its own thread.
+
+Messages from clients are parsed and pushed onto the eventhandler queue.
+"""
 class Client(threading.Thread):
     def __init__(self, backend, addr, conn):
         threading.Thread.__init__(self)
@@ -18,6 +23,7 @@ class Client(threading.Thread):
             'email': "unknown",
             'password': "unknown"
         }
+
         self.backend = backend
 
     @property
