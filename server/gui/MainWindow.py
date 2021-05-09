@@ -4,7 +4,6 @@ from PyQt5.uic import loadUi
 
 from gui.ui.mainwindowui import Ui_MainWindow
 from gui.QueryLog import QueryLog
-from gui.ServerLog import ServerLog
 from gui.ActiveUsers import ActiveUsers
 
 from util.logger import Log
@@ -23,10 +22,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.about)
         self.CommandEnterBtn.clicked.connect(self.SendBroadcast)
         self.actionQuery_Log.triggered.connect(self.Query_Log)
-        self.actionServer_Log.triggered.connect(self.Server_Log)
         self.actionActive_Users.triggered.connect(self.Active_Users)
-    #     self.actionUser.triggered.connect(self.LoginDialog)
-    #     self.actionModerator.triggered.connect(self.ModeratorDialog)
 
     def about(self):
         QMessageBox.about(
@@ -44,9 +40,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def Query_Log(self):
         self._Query_Log = QueryLog(self)
-
-    def Server_Log(self):
-        self._Server_Log = ServerLog(self)
 
     def SendBroadcast(self):
         self.backend.broadcast(self.CommandField.toPlainText())
