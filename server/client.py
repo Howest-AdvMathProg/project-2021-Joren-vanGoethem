@@ -18,7 +18,6 @@ class Client(threading.Thread):
             'email': "unknown",
             'password': "unknown"
         }
-
         self.backend = backend
 
     @property

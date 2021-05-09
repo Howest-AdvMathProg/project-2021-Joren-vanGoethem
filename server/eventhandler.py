@@ -2,7 +2,6 @@ import threading
 import pandas as pd
 import json
 from time import sleep
-# pylint: disable=no-name-in-module
 from util.logger import Log
 
 class EventHandler(threading.Thread):

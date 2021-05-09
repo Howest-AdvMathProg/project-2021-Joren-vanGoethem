@@ -1,8 +1,6 @@
 from backend import Backend
-# from gui.MainWindow import MainWindow
 import json
 import sys
-# pylint: disable=no-name-in-module
 from gui.gui import GUI
 from util.logger import Log
 
@@ -10,8 +8,6 @@ from util.logger import Log
 import faulthandler
 faulthandler.enable()
 
-# with open("./server/config.json", "r") as f:
-#     config = json.load(f)
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -19,7 +15,7 @@ with open("config.json", "r") as f:
 backend = Backend(config["backend"])
 gui = GUI(backend)
 
-Log.log_level = 'VERB'
+Log.log_level = 'VERB' # verbose logging
 
 try:
     Log.info('MAIN', 'Starting application...')
