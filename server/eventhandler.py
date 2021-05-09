@@ -1,5 +1,6 @@
 import threading
 import pandas as pd
+import json
 from time import sleep
 # pylint: disable=no-name-in-module
 from util.logger import Log
@@ -13,6 +14,7 @@ class EventHandler(threading.Thread):
         self._config = config
 
         self.backend = backend
+        self.searches = {}
 
     @property
     def running(self):
@@ -89,7 +91,10 @@ class EventHandler(threading.Thread):
         target.send_event("MESSAGE", data["message"])
 
     def search(self, client, data):
-        client.searches.append(data)
+        if json.dumps(data) not in self.searches:
+            self.searches[json.dumps(data)] = 1
+        else:
+            self.searches[json.dumps(data)] += 1
 
         if data["type"] == 'all':
             data = self.backend.datahandler.search_all(data["query"], data["exact"])
