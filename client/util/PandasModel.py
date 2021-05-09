@@ -2,10 +2,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import *
 from PyQt5 import *
 from PyQt5.QtCore import QAbstractTableModel, Qt
-import sys  # We need sys so that we can pass argv to QApplication
-import os
-import re
-from random import randint
 import pandas as pd
 
 class PandasModel(QAbstractTableModel):

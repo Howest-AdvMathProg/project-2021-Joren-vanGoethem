@@ -18,7 +18,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -106,9 +105,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuLog.menuAction())
         self.menubar.addAction(self.menuExtra.menuAction())
         self.menuLog.addAction(self.actionQuery_Log)
-        self.menuLog.addAction(self.actionServer_Log)
         self.menuLog.addAction(self.actionActive_Users)
-        self.menuExtra.addAction(self.actiontest)
         self.menuExtra.addAction(self.actionAbout)
 
         self.retranslateUi(MainWindow)
@@ -124,8 +121,8 @@ class Ui_MainWindow(object):
         self.actionActive_Users.setText(QCoreApplication.translate("MainWindow", u"Active Users", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.CommandLabel.setText(QCoreApplication.translate("MainWindow", u"Send Broadcast:", None))
-        self.CommandEnterBtn.setText(QCoreApplication.translate("MainWindow", u"Enter", None))
+        self.CommandEnterBtn.setText(QCoreApplication.translate("MainWindow", u"Send", None))
         self.menuLog.setTitle(QCoreApplication.translate("MainWindow", u"Log", None))
-        self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Extra", None))
+        self.menuExtra.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
     # retranslateUi
 

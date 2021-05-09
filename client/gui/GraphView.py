@@ -4,7 +4,6 @@ from PyQt5 import *
 from pyqtgraph import *
 import pyqtgraph as pg
 import sys  # We need sys so that we can pass argv to QApplication
-import os
 import re
 from random import randint
 import json

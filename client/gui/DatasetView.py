@@ -2,11 +2,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.uic import *
 from PyQt5 import *
 from pyqtgraph import *
-import pyqtgraph as pg
-import sys  # We need sys so that we can pass argv to QApplication
-import os
-import re
-from random import randint
 import pandas as pd
 
 from gui.ui.mainwindowui import Ui_MainWindow
